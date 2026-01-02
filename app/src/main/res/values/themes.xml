@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MentalHealthMoodTracker" parent="Theme.MaterialComponents.DayLight.DarkActionBar">
+    <style name="Theme.MentalHealthMoodTracker" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_dark</item>
@@ -15,12 +15,6 @@
         <item name="android:windowBackground">@color/background</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorOnSurface">@color/text_primary</item>
-    </style>
-
-    <!-- Theme for MainActivity (Splash-like) -->
-    <style name="Theme.MentalHealthMoodTracker.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <!-- Button Style -->

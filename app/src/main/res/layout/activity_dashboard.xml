@@ -123,7 +123,7 @@
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"
-                            android:textAlignment="center"
+                            android:gravity="center"
                             android:layout_marginTop="8dp"/>
 
                     </LinearLayout>
@@ -164,7 +164,7 @@
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"
-                            android:textAlignment="center"
+                            android:gravity="center"
                             android:layout_marginTop="8dp"/>
 
                     </LinearLayout>
@@ -205,7 +205,7 @@
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"
-                            android:textAlign="center"
+                            android:gravity="center"
                             android:layout_marginTop="8dp"/>
 
                     </LinearLayout>
@@ -246,7 +246,7 @@
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"
-                            android:textAlign="center"
+                            android:gravity="center"
                             android:layout_marginTop="8dp"/>
 
                     </LinearLayout>

@@ -5,9 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.yourname.mentalhealthtracker.data.MoodEntry
-import com.yourname.mentalhealthtracker.data.MoodRepository
-import com.yourname.mentalhealthtracker.data.MoodStatistics
+import com.example.mentalhealthtracker.data.MoodEntry
+import com.example.mentalhealthtracker.data.MoodRepository
+import com.example.mentalhealthtracker.data.MoodStatistics
 import kotlinx.coroutines.launch
 
 class MoodViewModel(application: Application) : AndroidViewModel(application) {
@@ -100,6 +100,13 @@ class MoodViewModel(application: Application) : AndroidViewModel(application) {
             _errorMessage.value = "Error fetching mood: ${e.message}"
             callback(null)
         }
+    }
+
+    /**
+     * Get moods by date range
+     */
+    fun getMoodsByDateRange(startDate: Long, endDate: Long): LiveData<List<MoodEntry>> {
+        return repository.getMoodsByDateRange(startDate, endDate)
     }
 
     /**
