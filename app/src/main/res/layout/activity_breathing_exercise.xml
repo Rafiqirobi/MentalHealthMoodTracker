@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.BreathingExerciseActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:title="@string/breathing_exercise_title"
+            app:titleTextColor="@android:color/white"
+            app:navigationIcon="@drawable/ic_back"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/breathing_description"
+            android:textSize="16sp"
+            android:textColor="@color/text_secondary"
+            android:textAlignment="center"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Breathing Circle Animation -->
+        <View
+            android:id="@+id/breathingCircle"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/bg_mood_selected"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Instruction Text -->
+        <TextView
+            android:id="@+id/instructionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/breathe_in"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Timer Text -->
+        <TextView
+            android:id="@+id/timerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Control Buttons -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/startStopButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/start_exercise"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            app:cornerRadius="30dp"/>
+
+        <!-- Exercise Type Selector -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Exercise Type"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"/>
+
+        <RadioGroup
+            android:id="@+id/exerciseTypeRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio478"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/four_seven_eight"
+                android:textSize="14sp"
+                android:checked="true"
+                android:layout_marginBottom="8dp"/>
+
+            <RadioButton
+                android:id="@+id/radioBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/box_breathing"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"/>
+
+            <RadioButton
+                android:id="@+id/radioDeep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deep_breathing"
+                android:textSize="14sp"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
