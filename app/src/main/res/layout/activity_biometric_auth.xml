@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="100dp"
         app:tint="@color/primary"/>
 
     <TextView
@@ -62,19 +62,112 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="48dp"/>
 
+    <!-- Divider with "OR" -->
+    <LinearLayout
+        android:id="@+id/dividerLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/authenticateButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="@color/divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OR"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="@color/divider"/>
+
+    </LinearLayout>
+
+    <!-- Password Login Option -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/skipButton"
+        android:id="@+id/usePasswordButton"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:text="@string/skip_for_now"
+        android:text="Use Password Instead"
         android:textSize="16sp"
         android:textAllCaps="false"
         app:cornerRadius="30dp"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        app:layout_constraintTop_toBottomOf="@id/authenticateButton"
+        app:layout_constraintTop_toBottomOf="@id/dividerLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="24dp"/>
+
+    <!-- Password Input Section (Hidden by default) -->
+    <LinearLayout
+        android:id="@+id/passwordSection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/usePasswordButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+        tools:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginWithPasswordButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Login"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            app:cornerRadius="30dp"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/backToBiometricTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back to Biometric"
+            android:textColor="@color/primary"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/statusTextView"
@@ -85,11 +178,21 @@
         android:textColor="@color/error"
         android:gravity="center"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/skipButton"
+        app:layout_constraintTop_toBottomOf="@id/passwordSection"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         tools:visibility="visible"
         tools:text="Authentication failed"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/statusTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

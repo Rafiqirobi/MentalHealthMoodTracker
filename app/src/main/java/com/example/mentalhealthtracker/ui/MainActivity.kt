@@ -2,15 +2,15 @@ package com.example.mentalhealthtracker.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mentalhealthtracker.databinding.ActivityMainBinding
+import com.example.mentalhealthtracker.utils.AuthManager
 import com.example.mentalhealthtracker.utils.PreferencesManager
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var authManager: AuthManager
     private lateinit var preferencesManager: PreferencesManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,28 +18,44 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        authManager = AuthManager()
         preferencesManager = PreferencesManager(this)
 
-        // Check if first launch
-        if (!preferencesManager.isFirstLaunch) {
-            // Not first launch, check biometric
+        // Check authentication state
+        checkAuthState()
+
+        setupWelcomeScreen()
+    }
+
+    private fun checkAuthState() {
+        if (authManager.isUserLoggedIn()) {
+            // User is logged in, check biometric preference
             if (preferencesManager.isBiometricEnabled) {
                 navigateToBiometricAuth()
             } else {
                 navigateToDashboard()
             }
-            return
+        } else {
+            // User not logged in
+            if (!preferencesManager.isFirstLaunch) {
+                // Not first launch, go to login
+                navigateToLogin()
+            }
+            // Otherwise show welcome screen
         }
-
-        // First launch - show welcome screen
-        setupWelcomeScreen()
     }
 
     private fun setupWelcomeScreen() {
         binding.getStartedButton.setOnClickListener {
             preferencesManager.isFirstLaunch = false
-            navigateToBiometricAuth()
+            navigateToLogin()
         }
+    }
+
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun navigateToBiometricAuth() {
