@@ -21,27 +21,24 @@ class MainActivity : AppCompatActivity() {
         authManager = AuthManager()
         preferencesManager = PreferencesManager(this)
 
-        // Check authentication state
+        // Check authentication state immediately
         checkAuthState()
-
-        setupWelcomeScreen()
     }
 
     private fun checkAuthState() {
         if (authManager.isUserLoggedIn()) {
-            // User is logged in, check biometric preference
-            if (preferencesManager.isBiometricEnabled) {
-                navigateToBiometricAuth()
-            } else {
-                navigateToDashboard()
-            }
+            // User is logged in, ALWAYS show biometric auth screen
+            // (which has password fallback)
+            navigateToBiometricAuth()
         } else {
             // User not logged in
-            if (!preferencesManager.isFirstLaunch) {
+            if (preferencesManager.isFirstLaunch) {
+                // First launch, show welcome screen
+                setupWelcomeScreen()
+            } else {
                 // Not first launch, go to login
                 navigateToLogin()
             }
-            // Otherwise show welcome screen
         }
     }
 
@@ -60,12 +57,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToBiometricAuth() {
         val intent = Intent(this, BiometricAuthActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun navigateToDashboard() {
-        val intent = Intent(this, DashboardActivity::class.java)
         startActivity(intent)
         finish()
     }

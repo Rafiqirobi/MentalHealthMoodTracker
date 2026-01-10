@@ -99,6 +99,11 @@
             android:name=".ui.ProfileActivity"
             android:exported="false"/>
 
+        <!-- Breathing Exercise Perform Activity -->
+        <activity
+            android:name=".ui.BreathingExercisePerformActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

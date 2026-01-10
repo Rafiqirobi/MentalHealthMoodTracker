@@ -12,7 +12,6 @@ import com.example.mentalhealthtracker.utils.AuthManager
 import com.example.mentalhealthtracker.utils.BiometricAuthManager
 import com.example.mentalhealthtracker.utils.PreferencesManager
 import com.google.firebase.auth.EmailAuthProvider
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
@@ -35,12 +34,21 @@ class BiometricAuthActivity : AppCompatActivity() {
             preferencesManager = PreferencesManager(this)
             authManager = AuthManager()
 
+            // Check if this is right after registration
+            val skipBiometric = intent.getBooleanExtra("SKIP_BIOMETRIC", false)
+            if (skipBiometric) {
+                // User just registered, go directly to dashboard
+                navigateToDashboard()
+                return
+            }
+
             checkBiometricAvailability()
             setupClickListeners()
 
-            // Auto-trigger biometric if available
+            // Auto-trigger biometric if available and enabled
             val status = biometricAuthManager.checkBiometricAvailability()
-            if (status == BiometricAuthManager.BiometricStatus.AVAILABLE) {
+            if (status == BiometricAuthManager.BiometricStatus.AVAILABLE &&
+                preferencesManager.isBiometricEnabled) {
                 authenticate()
             }
         } catch (e: Exception) {
@@ -64,6 +72,7 @@ class BiometricAuthActivity : AppCompatActivity() {
                     binding.statusTextView.text = "No biometric enrolled. Please use password."
                     binding.statusTextView.visibility = View.VISIBLE
                     binding.authenticateButton.isEnabled = false
+                    // Auto-show password if no biometric
                     showPasswordOption()
                 }
 

@@ -2,6 +2,8 @@ package com.example.mentalhealthtracker.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -24,18 +26,6 @@ class DashboardActivity : AppCompatActivity() {
             // Setup toolbar
             setSupportActionBar(binding.toolbar)
 
-            // Add menu
-            binding.toolbar.inflateMenu(R.menu.dashboard_menu)
-            binding.toolbar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.action_profile -> {
-                        startActivity(Intent(this, ProfileActivity::class.java))
-                        true
-                    }
-                    else -> false
-                }
-            }
-
             // Initialize ViewModel
             viewModel = ViewModelProvider(this)[MoodViewModel::class.java]
 
@@ -45,6 +35,27 @@ class DashboardActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
             Toast.makeText(this, "Error initializing dashboard: ${e.message}", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    // This creates the menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.dashboard_menu, menu)
+        return true
+    }
+
+    // This handles menu clicks
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_profile -> {
+                try {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Error opening profile: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
