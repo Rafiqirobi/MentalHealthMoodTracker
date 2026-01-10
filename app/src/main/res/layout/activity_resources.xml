@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/primary"
             app:title="@string/mental_health_resources"
-            app:titleTextColor="@android:color/white"
+            app:titleTextColor="@color/white"
             app:navigationIcon="@drawable/ic_back"/>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp"
-                app:cardBackgroundColor="#FFF3E0"
+                app:cardBackgroundColor="@color/primary_light"
                 android:layout_marginBottom="16dp">
 
                 <LinearLayout

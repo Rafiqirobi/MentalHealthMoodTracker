@@ -2,29 +2,32 @@ package com.example.mentalhealthtracker.data
 
 enum class PlaceType(val displayName: String, val emoji: String) {
     // Water Features
-    BEACH("Beach", "🏖️"),
-    WATERFALL("Waterfall", "💧"),
-    LAKE("Lake", "🏞️"),
-    RIVER("River", "🌊"),
+    BEACH("Serene beach", "🏖️"),
+    WATERFALL("Waterfall with picnic area", "💧"),
+    LAKE("Lake garden", "🏞️"),
+    RIVER("Riverfront park", "🌊"),
+    HOT_SPRING("Public hot spring", "♨️"),
 
     // Nature & Parks
-    PARK("Park", "🌳"),
-    GARDEN("Garden", "🌺"),
-    HIKING_TRAIL("Hiking Trail", "🥾"),
-    MOUNTAIN("Mountain", "⛰️"),
-    FOREST("Forest", "🌲"),
-    SCENIC_VIEW("Scenic View", "👁️"),
+    PARK("Public park with walking paths", "🌳"),
+    GARDEN("Public garden", "🌺"),
+    HIKING_TRAIL("Hiking trail", "🥾"),
+    MOUNTAIN("Mountain viewpoint", "⛰️"),
+    FOREST("Recreational forest", "🌲"),
+    SCENIC_VIEW("Scenic lookout point", "🌅"),
 
-    // Countryside
-    ORCHARD("Orchard", "🍎"),
-    FARM("Farm", "🚜"),
+    // Countryside & Agriculture
+    TEA_PLANTATION("Tea plantation with cafe", "🍵"),
+    ORCHARD("Fruit orchard", "🥭"),
+    FARM("Agro-tourism farm", "🚜"),
     BOTANICAL_GARDEN("Botanical Garden", "🌿"),
 
-    // Urban Relaxation
-    CAFE("Café", "☕"),
-    LIBRARY("Library", "📚"),
-    MUSEUM("Museum", "🖼️"),
-    SHOPPING_MALL("Shopping Mall", "🛍️"),
+    // Urban & Community Relaxation
+    CAFE("Quiet cafe", "☕"),
+    LIBRARY("Public library", "📚"),
+    MUSEUM("Art museum or gallery", "🖼️"),
+    SHOPPING_MALL("Shopping mall", "🛍️"),
+    MOSQUE("Mosque", "🕌"),
 
     OTHER("Other", "📍")
 }

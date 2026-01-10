@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Primary Colors -->
-    <color name="primary">#6200EE</color>
-    <color name="primary_dark">#3700B3</color>
-    <color name="primary_light">#BB86FC</color>
-    <color name="accent">#03DAC5</color>
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#03A9F4</color>
 
     <!-- Background Colors -->
-    <color name="background">#F5F5F5</color>
+    <color name="background">#E3F2FD</color>
     <color name="surface">#FFFFFF</color>
     <color name="card_background">#FFFFFF</color>
 
@@ -36,8 +36,8 @@
     <color name="divider">#E0E0E0</color>
 
     <!-- Mood Selection -->
-    <color name="mood_selected">#E8F5E9</color>
+    <color name="mood_selected">#E3F2FD</color>
     <color name="mood_unselected">#FAFAFA</color>
-    <color name="mood_border_selected">#4CAF50</color>
+    <color name="mood_border_selected">#03A9F4</color>
     <color name="mood_border_unselected">#E0E0E0</color>
 </resources>
