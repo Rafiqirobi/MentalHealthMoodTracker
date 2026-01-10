@@ -15,21 +15,3 @@ data class StressReliefPlace(
     val isOpen: Boolean? = null
 ) : Parcelable
 
-enum class PlaceType(val displayName: String, val searchQuery: String) {
-    PARK("Park", "park"),
-    GARDEN("Garden", "garden"),
-    NATURE("Nature Spot", "nature reserve"),
-    CAFE("Quiet Cafe", "cafe"),
-    LIBRARY("Library", "library"),
-    MUSEUM("Museum", "museum"),
-    BEACH("Beach", "beach"),
-    TRAIL("Walking Trail", "hiking trail"),
-    BOTANICAL_GARDEN("Botanical Garden", "botanical garden"),
-    OTHER("Other", "peaceful place");
-
-    companion object {
-        fun getAllSearchQueries(): List<String> {
-            return values().map { it.searchQuery }
-        }
-    }
-}

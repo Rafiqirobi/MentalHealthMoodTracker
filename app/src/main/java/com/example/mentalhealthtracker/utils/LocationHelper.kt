@@ -285,7 +285,7 @@ class LocationHelper(private val context: Context) {
             ),
             StressReliefPlace(
                 name = "Nature Trail Head",
-                type = PlaceType.TRAIL,
+                type = PlaceType.HIKING_TRAIL,
                 latitude = currentLatitude + 0.03,
                 longitude = currentLongitude - 0.02,
                 distance = calculateDistance(

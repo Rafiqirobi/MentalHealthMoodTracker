@@ -19,6 +19,7 @@ import com.example.mentalhealthtracker.data.StressReliefPlace
 import com.example.mentalhealthtracker.databinding.ActivityStressReliefPlacesBinding
 import com.example.mentalhealthtracker.ui.adapters.StressReliefPlaceAdapter
 import com.example.mentalhealthtracker.utils.LocationHelper
+import com.example.mentalhealthtracker.utils.PlacesHelper
 import kotlinx.coroutines.launch
 
 class StressReliefPlacesActivity : AppCompatActivity() {
@@ -158,22 +159,52 @@ class StressReliefPlacesActivity : AppCompatActivity() {
                 if (location != null) {
                     Log.d(TAG, "Location obtained: ${location.latitude}, ${location.longitude}")
 
-                    // Get mock places (in production, you'd use Google Places API)
-                    val places = locationHelper.getMockStressReliefPlaces(
-                        location.latitude,
-                        location.longitude
-                    )
+                    // Show user's location
+                    Toast.makeText(
+                        this@StressReliefPlacesActivity,
+                        "Your location: ${location.latitude}, ${location.longitude}\nSearching nearby...",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    // Initialize Places Helper
+                    val placesHelper = PlacesHelper(this@StressReliefPlacesActivity)
+
+                    // Try to get real places from Google Places API
+                    val places = try {
+                        Log.d(TAG, "Calling Places API...")
+                        placesHelper.simpleNearbySearch(
+                            location.latitude,
+                            location.longitude
+                        )
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Places API error, using mock data", e)
+                        Toast.makeText(
+                            this@StressReliefPlacesActivity,
+                            "Using sample data (Places API issue)",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        // Fallback to mock data if API fails
+                        locationHelper.getMockStressReliefPlaces(
+                            location.latitude,
+                            location.longitude
+                        )
+                    }
 
                     Log.d(TAG, "Found ${places.size} places")
 
                     if (places.isEmpty()) {
                         showEmptyState()
+                        Toast.makeText(
+                            this@StressReliefPlacesActivity,
+                            "No places found nearby. This might be a remote area.",
+                            Toast.LENGTH_LONG
+                        ).show()
                     } else {
                         showPlaces(places)
                     }
                 } else {
                     Log.e(TAG, "Failed to get location")
-                    showError("Unable to get your location. Please make sure location services are enabled.")
+                    showError("Unable to get your location. Please make sure location services are enabled and GPS signal is available.")
                 }
             } catch (e: Exception) {
                 Log.e(TAG, "Error loading places", e)
