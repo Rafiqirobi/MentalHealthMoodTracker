@@ -53,37 +53,6 @@ class PlacesHelper(context: Context) {
         try {
             Log.d(TAG, "Starting search near: $latitude, $longitude with ${SEARCH_RADIUS_KM}km radius")
 
-            // Simplified search keywords - most common stress relief places
-            val searchKeywords = listOf(
-                // Water Features
-                "beach" to PlaceType.BEACH,
-                "waterfall" to PlaceType.WATERFALL,
-                "lake" to PlaceType.LAKE,
-                "river" to PlaceType.RIVER,
-
-                // Nature & Parks
-                "park" to PlaceType.PARK,
-                "garden" to PlaceType.GARDEN,
-                "botanical garden" to PlaceType.BOTANICAL_GARDEN,
-                "hiking trail" to PlaceType.HIKING_TRAIL,
-                "mountain" to PlaceType.MOUNTAIN,
-                "forest" to PlaceType.FOREST,
-                "scenic viewpoint" to PlaceType.SCENIC_VIEW,
-                "lookout point" to PlaceType.SCENIC_VIEW,
-
-                // Countryside
-                "orchard" to PlaceType.ORCHARD,
-                "farm" to PlaceType.FARM,
-
-                // Urban Relaxation
-                "cafe" to PlaceType.CAFE,
-                "coffee shop" to PlaceType.CAFE,
-                "library" to PlaceType.LIBRARY,
-                "museum" to PlaceType.MUSEUM,
-                "shopping mall" to PlaceType.SHOPPING_MALL,
-                "shopping center" to PlaceType.SHOPPING_MALL
-            )
-
             // Create bounds for search area (approximately 15km radius)
             val offset = 0.135 // Roughly 15km in degrees
             val bounds = RectangularBounds.newInstance(
@@ -91,11 +60,11 @@ class PlacesHelper(context: Context) {
                 LatLng(latitude + offset, longitude + offset)
             )
 
-            // Search for all keywords
-            for ((keyword, placeType) in searchKeywords) {
+            // Search for all keywords from the PlaceType enum
+            for (placeType in PlaceType.values()) {
                 try {
                     val foundPlaces = searchByKeyword(
-                        keyword = keyword,
+                        keyword = placeType.searchQuery,
                         placeType = placeType,
                         userLat = latitude,
                         userLon = longitude,
@@ -103,9 +72,9 @@ class PlacesHelper(context: Context) {
                     )
                     places.addAll(foundPlaces)
 
-                    Log.d(TAG, "Found ${foundPlaces.size} places for keyword: $keyword")
+                    Log.d(TAG, "Found ${foundPlaces.size} places for keyword: ${placeType.searchQuery}")
                 } catch (e: Exception) {
-                    Log.e(TAG, "Error searching for $keyword", e)
+                    Log.e(TAG, "Error searching for ${placeType.searchQuery}", e)
                 }
             }
 
@@ -113,7 +82,7 @@ class PlacesHelper(context: Context) {
             val uniquePlaces = places
                 .distinctBy { it.name }
                 .sortedBy { it.distance }
-                .take(40)
+                .take(100)
 
             Log.d(TAG, "Total unique places found: ${uniquePlaces.size}")
 
@@ -152,8 +121,8 @@ class PlacesHelper(context: Context) {
             // Get predictions
             val response = placesClient.findAutocompletePredictions(request).await()
 
-            // Fetch details for each prediction (limit to 3 per keyword)
-            for (prediction in response.autocompletePredictions.take(3)) {
+            // Fetch details for each prediction (limit to 5 per keyword)
+            for (prediction in response.autocompletePredictions.take(5)) {
                 try {
                     val place = fetchPlaceDetails(prediction.placeId)
 
