@@ -145,6 +145,6 @@ This app is designed as a personal mood tracking tool and is not a substitute fo
 
 ## Contact
 
-Your Name - [your.email@example.com](mailto:your.email@example.com)
+Your Name - [2023410832@student.uitm.edu.my)
 
 Project Link: [https://github.com/YOUR-USERNAME/mental-health-mood-tracker](https://github.com/YOUR-USERNAME/mental-health-mood-tracker)
