@@ -113,13 +113,13 @@ app/
 🚧 **Under Active Development**
 
 - [x] Project setup
-- [ ] Biometric authentication implementation
-- [ ] Database with encryption
-- [ ] Mood logging interface
-- [ ] GPS location features
-- [ ] Mood analytics and charts
-- [ ] Breathing exercises
-- [ ] Resources and hotlines
+- [x] Biometric authentication implementation
+- [x] Database with encryption
+- [x] Mood logging interface
+- [x] GPS location features
+- [x] Mood analytics and charts
+- [x] Breathing exercises
+- [x] Resources and hotlines
 
 ## Contributing
 
